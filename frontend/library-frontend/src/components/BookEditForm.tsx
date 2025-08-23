@@ -19,8 +19,8 @@ const BookEditForm: React.FC<Props> = ({ book, onUpdated, onCancel }) => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!title || !author || !description) {
-      alert("All fields are required!");
+    if (!title || !author) {
+      alert("Title Author fields are required!");
       return;
     }
   // PUT request to backend

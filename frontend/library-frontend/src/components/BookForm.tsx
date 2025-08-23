@@ -18,8 +18,8 @@ const BookForm: React.FC<Props> = ({ onBookAdded }) => {
     e.preventDefault();
 
     // Validation all fields required
-    if (!title || !author || !description) {
-      alert("All fields are required!");
+    if (!title || !author ) {
+      alert("Title Author fields are required!");
       return;
     }
 
