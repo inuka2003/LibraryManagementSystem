@@ -23,6 +23,13 @@ const BookEditForm: React.FC<Props> = ({ book, onUpdated, onCancel }) => {
       alert("Title Author fields are required!");
       return;
     }
+
+    const authorRegex = /^[a-zA-Z\s]+$/;
+    if (!authorRegex.test(author)) {
+      alert("Author name can only contain letters and spaces.");
+      return;
+    }
+    
   // PUT request to backend
     await api.put(`/books/${book.id}`, { title, author, description });
     onUpdated();

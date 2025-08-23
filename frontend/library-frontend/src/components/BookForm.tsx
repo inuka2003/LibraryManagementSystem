@@ -23,6 +23,12 @@ const BookForm: React.FC<Props> = ({ onBookAdded }) => {
       return;
     }
 
+    const authorRegex = /^[a-zA-Z\s]+$/;
+    if (!authorRegex.test(author)) {
+      alert("Author name can only contain letters and spaces.");
+      return;
+    }
+
     // POST request to backend
     await api.post("/books", { title, author, description });
 
