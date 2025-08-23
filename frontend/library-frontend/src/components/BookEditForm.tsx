@@ -3,16 +3,19 @@ import api from "../api";
 import { Book } from "../types";
 
 type Props = {
-  book: Book;
-  onUpdated: () => void;
-  onCancel: () => void;
+  book: Book;    
+  onUpdated: () => void; // Callback after update
+  onCancel: () => void; // Cancel editing
 };
 
 const BookEditForm: React.FC<Props> = ({ book, onUpdated, onCancel }) => {
+   // Pre-fill form with book details
   const [title, setTitle] = useState(book.title);
-  const [author, setAuthor] = useState(book.author);
+  const [author, setAuthor] = useState(book.author); 
   const [description, setDescription] = useState(book.description);
 
+
+  // Handle update submit
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -20,7 +23,7 @@ const BookEditForm: React.FC<Props> = ({ book, onUpdated, onCancel }) => {
       alert("All fields are required!");
       return;
     }
-
+  // PUT request to backend
     await api.put(`/books/${book.id}`, { title, author, description });
     onUpdated();
   };

@@ -2,6 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace LibraryAPI.Models
 {
+     // DTO used when creating a new book (no Id field here)
     public class BookCreateDto
     {
         [Required]

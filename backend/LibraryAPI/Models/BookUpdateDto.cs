@@ -2,6 +2,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace LibraryAPI.Models
 {
+
+     // DTO used when updating a book (Id comes from route, not body)
     public class BookUpdateDto
     {
         [Required]

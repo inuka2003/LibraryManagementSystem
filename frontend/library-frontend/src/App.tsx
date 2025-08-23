@@ -7,6 +7,8 @@ import "./App.css";
 
 const App: React.FC = () => {
   const [editingBook, setEditingBook] = useState<Book | null>(null);
+
+  // used to refresh the book list after changes
   const [refresh, setRefresh] = useState(false);
 
   const handleRefresh = () => setRefresh(!refresh);

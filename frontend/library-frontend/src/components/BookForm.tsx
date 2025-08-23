@@ -2,27 +2,37 @@ import React, { useState } from "react";
 import api from "../api";
 
 type Props = {
-  onBookAdded: () => void;
+  onBookAdded: () => void;  //callback to refresh the list after adding
 };
 
 const BookForm: React.FC<Props> = ({ onBookAdded }) => {
+
+  // State for form fields
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
   const [description, setDescription] = useState("");
 
+
+  // Handle form submit
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
+    // Validation all fields required
     if (!title || !author || !description) {
       alert("All fields are required!");
       return;
     }
 
+    // POST request to backend
     await api.post("/books", { title, author, description });
 
+
+    // Reset form
     setTitle("");
     setAuthor("");
     setDescription("");
+
+    // Notify refresh book list
     onBookAdded();
   };
 

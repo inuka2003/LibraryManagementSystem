@@ -3,22 +3,26 @@ import api from "../api";
 import { Book } from "../types";
 
 type Props = {
-  onEdit: (book: Book) => void;
+  onEdit: (book: Book) => void;  // Callback when Edit button clicked
 };
 
 const BookList: React.FC<Props> = ({ onEdit }) => {
   const [books, setBooks] = useState<Book[]>([]);
-
+  
+  // Fetch books from backend
   const fetchBooks = async () => {
     const res = await api.get<Book[]>("/books");
     setBooks(res.data);
   };
 
+
+// Delete a book
   const deleteBook = async (id: number) => {
     await api.delete(`/books/${id}`);
     fetchBooks();
   };
 
+  // Load books when component is mounted
   useEffect(() => {
     fetchBooks();
   }, []);
